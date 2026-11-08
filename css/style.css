@@ -1,0 +1,578 @@
+/* Сброс всех стилей, которые идут по умолчанию */
+@import "./reset.css";
+
+/* * {
+    outline: 4px solid green !important;
+} */
+
+/* Объявление переменной root для свойств */
+:root {
+    
+    --dark-blue-color: #0F2438;
+
+    --dark-blue-alt-color: #0A1A2C;
+
+    --basement-footer-color: #868DAC;
+
+    --news-stroke-color: #242424;
+
+    --primary-color: #005BB9;
+
+    --discount-color: #FFB800;
+
+    --white-color: #FFFFFF;
+
+    --background-light-color: #F4F5FA;
+
+    --background-alt-light-color: #A29DBC;
+
+    --secondary-color: #C2C5DA;
+
+    --secondary-alt-color: #E1E5F8;
+
+    --prefers-color-scheme: #000000;
+
+    --dark-alt-color: #525252;
+
+    --dark-color: #717171;
+
+    --reviews-color: #B0B0B0;
+
+    --light-color: #858CAB;
+
+    --light-alt-color: #ADBDD1;
+
+    --transition: 0.3s ease;
+
+    --font-family-Roboto: 'Roboto', system-ui, sans-serif;
+
+    --font-family-Rubik: 'Rubik', system-ui, sans-serif;
+}
+
+/* Подключение шрифта "Roboto" */
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: url('../fonts/Roboto/Roboto-Bold.woff2') format('woff2');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Подключение шрифта "Rubik" */
+@font-face {
+	font-family: 'Rubik';
+	src: url('../fonts/Rubik/Rubik-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Общие стили для всей страницы */
+html.no-scroll,
+body.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+.container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1353px;
+    padding: 0 15px;
+    position: relative;
+    width: 100%;
+}
+
+/* Тёмная тема без JS
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--prefers-color-scheme);
+        color: var(--secondary-color);
+    }
+} */
+
+/* Служебная понель (Top Bar) */
+.top__bar {
+    background-color: var(--dark-blue-color);
+    color: var(--white-color);
+    font-size: 13px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.top__bar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top__bar--left {
+    display: flex;
+    align-items: center;
+    gap: 51px;
+}
+
+/* Кнопка выбора города */
+.city__selector {
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0px;
+    transition: opacity var(--transition);
+    white-space: nowrap;
+}
+
+.city__selector:hover {
+    opacity: 0.8;
+}
+
+.icon__location {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.city__name {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 1px;
+    transition: border-color var(--transition);
+}
+
+.city__selector:hover .city__name {
+    border-bottom-color: var(--white-color);
+}
+
+/* Навигация в левой части */
+.top__bar--nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.top__bar-nav--link {
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    text-decoration: none;
+    transition: opacity var(--transition);
+    white-space: nowrap;
+}
+
+.top__bar-nav--link:hover {
+    opacity: 0.8;
+}
+
+.top__bar-nav--icon {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+/* Правое меню (Ссылки) */
+.top__bar--list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top__bar--link {
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity var(--transition);
+    white-space: nowrap;
+}
+
+.top__bar--link:hover {
+    opacity: 0.8;
+}
+
+.top__bar--link-active {
+    color: var(--discount-color);
+}
+
+/* Кнопка "Еще" (скрыта по умолчанию) */
+.top__bar--more-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    white-space: nowrap;
+    transition: opacity var(--transition);
+}
+
+.top__bar--more-btn:hover {
+    opacity: 0.8;
+}
+
+.top__bar-more--icon {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+/* Модальное окно (Скрыто по умолчанию) */
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Класс для отображения модалки */
+.modal__overlay--active {
+    display: flex;
+}
+
+.modal__city {
+    background-color: var(--white-color);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 24px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Шапка модалки */
+.modal__city--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal__city--title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-blue-color);
+    margin: 0;
+    font-family: var(--font-family-Roboto);
+}
+
+.modal__city--close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition);
+}
+
+.modal__city--close:hover {
+    opacity: 0.7;
+}
+
+/* Поле поиска */
+.modal__city--search {
+    margin-bottom: 15px;
+}
+
+.modal__city--input {
+    width: 100%;
+    padding: 14px 14px;
+    background-color: var(--background-light-color);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    outline: none;
+    transition: border-color var(--transition);
+    box-sizing: border-box;
+}
+
+.modal__city--input::placeholder {
+    color: var(--secondary-color);
+}
+
+.modal__city--input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Список городов */
+.modal__city--list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Кнопки городов */
+.modal__city--link {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    cursor: pointer;
+    text-align: left;
+    transition: color var(--transition);
+    width: 100%;
+    text-decoration: none;
+}
+
+.modal__city--link:hover {
+    color: var(--primary-color);
+}
+
+.modal__city--link-active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Скроллбар для списка (опционально, для красоты) */
+.modal__city--link::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal__city--list::-webkit-scrollbar-track {
+    background: var(--background-light-color);
+    border-radius: 3px;
+}
+
+.modal__city--list::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 3px;
+}
+
+.modal__city--list::-webkit-scrollbar-thumb:hover {
+    background: var(--light-color);
+}
+
+/* Шапка */
+.header {
+    padding: 30px 0;
+}
+
+/* Обертка для логотипа */
+.header__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Логотип */
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+/* Иконка (картинка) */
+.header__logo--img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    background-repeat: no-repeat;
+}
+
+/* Текстовая часть */
+.header__logo--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+}
+
+/* Заголовок AVT-ZAP */
+.header__logo--title {
+    font-family: var(--font-family-Roboto);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark-blue-color);
+}
+
+/* Подзаголовок */
+.header__logo--subtitle {
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+}
+
+/* Информация (Время, Адрес) */
+.header__info {
+    display: flex;
+    align-items: center;
+    gap: 88px;
+}
+
+.header__info--item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.header__info--item:first-child {
+    gap: 10px;
+}
+
+.header__info--item:last-child {
+    gap: 14px;
+    align-items: center;
+}
+
+.header__info--icon {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.header__info--text {
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    line-height: 20px;
+    margin: 0
+}
+
+.header__info--item:first-child .header__info--text {
+    text-align: right; 
+}
+
+/* КОНТАКТЫ (МАКС + Телефон) */
+.header__contacts {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+/* Кнопка МАКС */
+.header__max {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #F4F5FA;
+    color: var(--dark-blue-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--transition);
+    white-space: nowrap;
+}
+
+.header__max:hover {
+    background-color: #E1E5F8;
+}
+
+/* Иконка Макс */
+.header__max svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Телефон */
+.header__phone--wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.header__phone {
+    font-family: var(--font-family-Roboto);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    text-decoration: none;
+    transform: color var(--transition);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.header__phone:hover {
+    color: var(--primary-color);
+}
+
+.header__callback {
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    color: var(--secondary-color);
+    margin-top: 3px;
+    transition: color var(--transition);
+    cursor: pointer;
+}
+
+.header__callback:hover {
+    color: var(--primary-color);
+}
+

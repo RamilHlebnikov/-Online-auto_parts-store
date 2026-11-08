@@ -1,0 +1,134 @@
+/* Медиазапрос для мобильных (от 320px до 480px) */
+@media (min-width: 320px) and (max-width: 480px) {
+    .top__bar {
+        padding: 10px 0;
+        position: relative;
+        z-index: 100;
+    }
+
+    .top__bar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    }
+
+    /* Левая часть */
+    .top__bar--left {
+        width: auto;
+    }
+
+    /* Выбор города */
+    .city__selector {
+        font-size: 12px;
+        gap: 5px;
+    }
+
+    .icon__location {
+        width: 17px;
+        height: 17px;
+    }
+
+    /* Скрытая навигация возле города */
+    .top__bar--nav {
+        display: none;
+    }
+
+    /* Выпадающее меню */
+    .top__bar--right {
+        display: none;
+        position: absolute;
+        top: calc(100% + 18px);
+        right: 15px;
+        width: 190px;
+        background-color: var(--dark-blue-color);
+        border-radius: 10px;
+        padding: 14px 15px;
+        box-sizing: border-box;
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        z-index: 101;
+    }
+
+    /* Открытое меню */
+    .top__bar--right-active {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    /* Общий список ссылок */
+    .top__bar--list {
+        display: contents;
+    }
+
+    /* Навигация Информация и Сотрудничество */
+    .top__bar--nav {
+        display: contents;
+    }
+
+    /* Элементы списка */
+    .top__bar--item {
+        display: block;
+    }
+
+    /* Все ссылки меню */
+    .top__bar--link,
+    .top__bar-nav--link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--white-color);
+        text-decoration: none;
+    }
+
+    .top__bar--link:hover,
+    .top__bar-nav--link:hover {
+        opacity: 0.8;
+    }
+
+    /* Стрелки */
+    .top__bar-nav--icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Кнопка Еще */
+    .top__bar--more-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        margin-left: auto;
+        flex-shrink: 0;
+        font-family: var(--font-family-Roboto);
+        font-weight: 500;
+    }
+
+    .top__bar-more--icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Модальное окно */
+    .modal__city {
+        width: calc(100% - 30px);
+        max-width: 400px;
+        padding: 20px 16px;
+        box-sizing: border-box;
+    }
+
+    .modal__city--title {
+        font-size: 16px;
+    }
+
+    .modal__city--input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .modal__city--list {
+        max-height: 220px;
+    }
+}
