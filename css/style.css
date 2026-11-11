@@ -268,150 +268,6 @@ html {
     margin-top: 0;
 }
 
-/* Модальное окно (Скрыто по умолчанию) */
-.modal__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-/* Класс для отображения модалки */
-.modal__overlay--active {
-    display: flex;
-}
-
-.modal__city {
-    background-color: var(--white-color);
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    padding: 24px 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
-
-/* Шапка модалки */
-.modal__city--header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.modal__city--title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--dark-blue-color);
-    margin: 0;
-    font-family: var(--font-family-Roboto);
-}
-
-.modal__city--close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity var(--transition);
-}
-
-.modal__city--close:hover {
-    opacity: 0.7;
-}
-
-/* Поле поиска */
-.modal__city--search {
-    margin-bottom: 15px;
-}
-
-.modal__city--input {
-    width: 100%;
-    padding: 14px 14px;
-    background-color: var(--background-light-color);
-    border: 1px solid transparent;
-    border-radius: 6px;
-    font-size: 14px;
-    color: var(--dark-blue-color);
-    font-family: var(--font-family-Roboto);
-    outline: none;
-    transition: border-color var(--transition);
-    box-sizing: border-box;
-}
-
-.modal__city--input::placeholder {
-    color: var(--secondary-color);
-}
-
-.modal__city--input:focus {
-    border-color: var(--primary-color);
-}
-
-/* Список городов */
-.modal__city--list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-height: 250px;
-    overflow-y: auto;
-}
-
-/* Кнопки городов */
-.modal__city--link {
-    display: inline-block;
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--dark-blue-color);
-    font-family: var(--font-family-Roboto);
-    cursor: pointer;
-    text-align: left;
-    transition: color var(--transition);
-    width: 100%;
-    text-decoration: none;
-}
-
-.modal__city--link:hover {
-    color: var(--primary-color);
-}
-
-.modal__city--link-active {
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
-/* Скроллбар для списка (опционально, для красоты) */
-.modal__city--link::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modal__city--list::-webkit-scrollbar-track {
-    background: var(--background-light-color);
-    border-radius: 3px;
-}
-
-.modal__city--list::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 3px;
-}
-
-.modal__city--list::-webkit-scrollbar-thumb:hover {
-    background: var(--light-color);
-}
-
 /* Шапка */
 .header {
     padding-top: 30px;
@@ -735,4 +591,148 @@ html {
     font-size: 12px;
     color: var(--dark-blue-color);
     font-weight: 400;
+}
+
+/* Модальное окно (Скрыто по умолчанию) */
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Класс для отображения модалки */
+.modal__overlay--active {
+    display: flex;
+}
+
+.modal__city {
+    background-color: var(--white-color);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 24px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Шапка модалки */
+.modal__city--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal__city--title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-blue-color);
+    margin: 0;
+    font-family: var(--font-family-Roboto);
+}
+
+.modal__city--close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity var(--transition);
+}
+
+.modal__city--close:hover {
+    opacity: 0.7;
+}
+
+/* Поле поиска */
+.modal__city--search {
+    margin-bottom: 15px;
+}
+
+.modal__city--input {
+    width: 100%;
+    padding: 14px 14px;
+    background-color: var(--background-light-color);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    outline: none;
+    transition: border-color var(--transition);
+    box-sizing: border-box;
+}
+
+.modal__city--input::placeholder {
+    color: var(--secondary-color);
+}
+
+.modal__city--input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Список городов */
+.modal__city--list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Кнопки городов */
+.modal__city--link {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    cursor: pointer;
+    text-align: left;
+    transition: color var(--transition);
+    width: 100%;
+    text-decoration: none;
+}
+
+.modal__city--link:hover {
+    color: var(--primary-color);
+}
+
+.modal__city--link-active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Скроллбар для списка (опционально, для красоты) */
+.modal__city--link::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal__city--list::-webkit-scrollbar-track {
+    background: var(--background-light-color);
+    border-radius: 3px;
+}
+
+.modal__city--list::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 3px;
+}
+
+.modal__city--list::-webkit-scrollbar-thumb:hover {
+    background: var(--light-color);
 }
