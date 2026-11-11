@@ -109,54 +109,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно (Скрыто по умолчанию) -->
-    <div class="modal__overlay" id="city-modal">
-        <div class="modal__city">
-            
-            <div class="modal__city--header">
-                <h2 class="modal__city--title">Выберите свой город</h2>
-                <button class="modal__city--close" type="button" aria-label="Закрыть">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_1_608)">
-                            <path d="M1.03451 20C0.771056 20 0.507606 19.8998 0.307445 19.6982C-0.0943844 19.2963 -0.0943844 18.6449 0.307445 18.2431L18.2491 0.301372C18.651 -0.100457 19.3024 -0.100457 19.7043 0.301372C20.1061 0.703201 20.1061 1.35467 19.7043 1.75675L1.76282 19.6982C1.56115 19.8986 1.2977 20 1.03451 20V20Z" fill="#A29DBC"/>
-                            <path d="M18.9774 20C18.714 20 18.4508 19.8998 18.2504 19.6982L0.307445 1.75675C-0.0943844 1.35467 -0.0943844 0.703201 0.307445 0.301372C0.709274 -0.100457 1.36074 -0.100457 1.76282 0.301372L19.7043 18.2431C20.1061 18.6449 20.1061 19.2963 19.7043 19.6982C19.5026 19.8986 19.2394 20 18.9774 20Z" fill="#A29DBC"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_1_608">
-                                <rect width="20" height="20" fill="white"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="modal__city--search">
-                <input type="text" class="modal__city--input" placeholder="Ваш город">
-            </div>
-
-            <ul class="modal__city--list">
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link modal__city--link-active">Москва</a>
-                </li>
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link">Санкт-Петербург</a>
-                </li>
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link">Краснодар</a>
-                </li>
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link">Екатеринбург</a>
-                </li>
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link">Ростов-на-Дону</a>
-                </li>
-                <li class="modal__city--item">
-                    <a href="#" class="modal__city--link">Самара</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <!-- Шапка -->
     <header class="header">
         <div class="container">
@@ -266,6 +218,54 @@
             </div>
         </div>
     </header>
+
+    <!-- Модальное окно (Скрыто по умолчанию) -->
+    <div class="modal__overlay" id="city-modal">
+        <div class="modal__city">
+            
+            <div class="modal__city--header">
+                <h2 class="modal__city--title">Выберите свой город</h2>
+                <button class="modal__city--close" type="button" aria-label="Закрыть">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_608)">
+                            <path d="M1.03451 20C0.771056 20 0.507606 19.8998 0.307445 19.6982C-0.0943844 19.2963 -0.0943844 18.6449 0.307445 18.2431L18.2491 0.301372C18.651 -0.100457 19.3024 -0.100457 19.7043 0.301372C20.1061 0.703201 20.1061 1.35467 19.7043 1.75675L1.76282 19.6982C1.56115 19.8986 1.2977 20 1.03451 20V20Z" fill="#A29DBC"/>
+                            <path d="M18.9774 20C18.714 20 18.4508 19.8998 18.2504 19.6982L0.307445 1.75675C-0.0943844 1.35467 -0.0943844 0.703201 0.307445 0.301372C0.709274 -0.100457 1.36074 -0.100457 1.76282 0.301372L19.7043 18.2431C20.1061 18.6449 20.1061 19.2963 19.7043 19.6982C19.5026 19.8986 19.2394 20 18.9774 20Z" fill="#A29DBC"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_608">
+                                <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal__city--search">
+                <input type="text" class="modal__city--input" placeholder="Ваш город">
+            </div>
+
+            <ul class="modal__city--list">
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link modal__city--link-active">Москва</a>
+                </li>
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link">Санкт-Петербург</a>
+                </li>
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link">Краснодар</a>
+                </li>
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link">Екатеринбург</a>
+                </li>
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link">Ростов-на-Дону</a>
+                </li>
+                <li class="modal__city--item">
+                    <a href="#" class="modal__city--link">Самара</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
     <script src="./js/script.js"></script>
 </body>
