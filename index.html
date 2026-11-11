@@ -28,7 +28,7 @@
             <div class="top__bar--left">
                 
                 <!-- Кнопка города -->
-                <button class="city__selector" type="button">
+                <button class="city__selector" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="city-modal">
                     <svg class="icon__location" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 0C6.12297 0 2.96875 3.15422 2.96875 7.03125C2.96875 8.34117 3.3316 9.61953 4.01832 10.7286L9.59977 19.723C9.70668 19.8953 9.89504 20 10.0976 20C10.0992 20 10.1007 20 10.1023 20C10.3066 19.9984 10.4954 19.8905 10.6003 19.7152L16.0395 10.6336C16.6883 9.54797 17.0312 8.30231 17.0312 7.03125C17.0312 3.15422 13.877 0 10 0ZM15.0338 10.032L10.0887 18.2885L5.01434 10.1112C4.44273 9.18805 4.13281 8.12305 4.13281 7.03125C4.13281 3.80039 6.76914 1.16406 10 1.16406C13.2309 1.16406 15.8633 3.80039 15.8633 7.03125C15.8633 8.09066 15.5738 9.12844 15.0338 10.032Z" fill="white"/>
                         <path d="M10 3.51562C8.06148 3.51562 6.48438 5.09273 6.48438 7.03125C6.48438 8.95738 8.03582 10.5469 10 10.5469C11.9884 10.5469 13.5156 8.93621 13.5156 7.03125C13.5156 5.09273 11.9385 3.51562 10 3.51562ZM10 9.38281C8.7009 9.38281 7.64844 8.32684 7.64844 7.03125C7.64844 5.73891 8.70766 4.67969 10 4.67969C11.2923 4.67969 12.3477 5.73891 12.3477 7.03125C12.3477 8.30793 11.3197 9.38281 10 9.38281Z" fill="white"/>
@@ -264,6 +264,84 @@
                     <a href="#" class="modal__city--link">Самара</a>
                 </li>
             </ul>
+        </div>
+    </div>
+    
+    <!-- Уведомление Cookie -->
+    <div class="cookie__notifications" id="cookie-notifications" role="region" aria-label="Настройки файлов Cookie" hidden>
+        <div class="container">
+
+            <!-- Основная информация -->
+            <div class="cookie__content">
+
+                <!-- Иконка Cookie -->
+                <i class='bx bxs-cookie bx-tada cookie__icon' aria-hidden="true"></i>
+
+                <!-- Текст уведомления -->
+                <p class="cookie__text">
+                    Мы используем необходимые файлы Cookie для работы сайта, а также можем использовать аналитические и маркетинговые файлы для улучшения вашего опыта. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener noreferrer" class="cookie__link">политике конфиденциальности</a>.
+                </p>
+            </div>
+
+            <!-- Настройки Cookie -->
+            <div class="cookie__settings">
+
+                <!-- Кнопка открытия настроек -->
+                <button class="cookie__settings--toggle" type="button" aria-expanded="false" aria-controls="cookie-preferences">Настроить</button>
+
+                <!-- Внутреннее окно настроек -->
+                <div class="cookie__preferences" id="cookie-preferences" hidden>
+
+                    <!-- Заголовок настроек -->
+                    <p class="cookie__preferences--title">Настройки файлов Cookie</p>
+
+                    <!-- Необходимые Cookie -->
+                    <label class="cookie__option">
+                        <span class="cookie__option--content">
+                            <span class="cookie__option--title">Необходимые</span>
+
+                            <span class="cookie__option--description">Обеспечивают базовую работу сайта и его основных функций.</span>
+                        </span>
+
+                        <input type="checkbox" class="cookie__checkbox" checked disabled>
+                    </label>
+
+                    <!-- Аналитические Cookie -->
+                    <label class="cookie__option">
+                        <span class="cookie__option--content">
+                            <span class="cookie__option--title">Аналитические</span>
+
+                            <span class="cookie__option--description">Помогают анализировать посещаемость и улучшать работу сайта.</span>
+                        </span>
+
+                        <input type="checkbox" class="cookie__checkbox" id="cookie-analytics">
+                    </label>
+
+                    <!-- Маркетинговые Cookie -->
+                    <label class="cookie__option">
+                        <span class="cookie__option--content">
+                            <span class="cookie__option--title">Маркетинговые</span>
+
+                            <span class="cookie__option--description">Используются для персонализации рекламы и оценки её эффективности.</span>
+                        </span>
+
+                        <input type="checkbox" class="cookie__checkbox" id="cookie-marketing">
+                    </label>
+
+                    <!-- Сохранение выбранных настроек -->
+                    <button class="cookie__save" type="button">Сохранить настройки</button>
+                </div>
+            </div>
+
+            <!-- Основные кнопки управления согласием -->
+            <div class="cookie__container--label">
+
+                <!-- Принять все категории -->
+                <button class="cookie__accept" type="button">Принять все</button>
+
+                <!-- Отклонить необязательные категории -->
+                <button class="cookie__decline" type="button">Отклонить необязательные</button>
+            </div>
         </div>
     </div>
 

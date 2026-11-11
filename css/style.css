@@ -480,12 +480,17 @@ html {
     flex-grow: 1;
     max-width: 649px;
     background-color: var(--background-light-color);
-    border-radius: 6px 0 0 6px;
+    border-radius: 6px;
     height: 53px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Поле ввода */
 .header__search--input {
     flex-grow: 1;
+    min-width: 0;
     border: none;
     background: transparent;
     padding: 0 20px;
@@ -494,15 +499,21 @@ html {
     font-size: 14px;
     color: var(--dark-blue-color);
     outline: none;
-    transition: border-color var(--transition);
 }
 
 .header__search--input::placeholder {
     color: var(--secondary-color);
 }
 
-.header__search--input:focus {
-    border-color: var(--primary-color);
+/* Синяя рамка при фокусе */
+.header__search:focus-within::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .header__search--btn {
@@ -735,4 +746,263 @@ html {
 
 .modal__city--list::-webkit-scrollbar-thumb:hover {
     background: var(--light-color);
+}
+
+/* Уведомление Cookie (Скрытие элементов с атрибутом hidden) */
+.cookie__notifications[hidden],
+.cookie__preferences[hidden] {
+    display: none;
+}
+
+/* Основной контейнер уведомления */
+.cookie__notifications {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 32px);
+    max-width: 640px;
+    box-sizing: border-box;
+    padding: 20px 15px;
+    background-color: transparent;
+    border: 1px solid var(--dark-blue-color);
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    z-index: 10000;
+    opacity: 0;
+    animation: cookieSlideIn 0.5s ease-out 0.5s forwards;
+}
+
+/* Анимация появления уведомления */
+@keyframes cookieSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Контейнер иконки и текста */
+.cookie__content {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 18px;
+}
+
+/* Иконка Cookie */
+.cookie__icon {
+    display: block;
+    margin-top: 4px;
+    font-size: 30px;
+    color: #FDB400;
+    line-height: 1;
+    cursor: default;
+}
+
+/* Текст уведомления */
+.cookie__text {
+    margin: 0;
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--dark-blue-color);
+}
+
+/* Ссылка на политику конфиденциальности */
+.cookie__link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.cookie__link:hover {
+    color: #004a99;
+}
+
+/* Контейнер кнопки и внутреннего окна */
+.cookie__settings {
+    margin-top: 9px;
+    margin-left: 50px;
+}
+
+/* Кнопка открытия дополнительных настроек */
+.cookie__settings--toggle {
+    padding: 4px 0;
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.cookie__settings--toggle:hover {
+    color: #004a99;
+}
+
+/* Внутреннее окно настроек */
+.cookie__preferences {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--dark-blue-color);
+}
+
+/* Заголовок внутреннего окна */
+.cookie__preferences--title {
+    margin: 0 0 4px;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Отдельная категория Cookie */
+.cookie__option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(15, 36, 56, 0.15);
+    cursor: pointer;
+}
+
+/* Текстовая часть категории */
+.cookie__option--content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Название категории */
+.cookie__option--title {
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Описание категории */
+.cookie__option--description {
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Переключатели категорий */
+.cookie__checkbox {
+    flex-shrink: 0;
+    width: 19px;
+    height: 19px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Неактивный переключатель необходимых Cookie */
+.cookie__checkbox:disabled {
+    cursor: not-allowed;
+}
+
+/* Кнопка сохранения настроек */
+.cookie__save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 42px;
+    margin-top: 4px;
+    padding: 10px 16px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.cookie__save:hover {
+    background-color: #004a99;
+}
+
+/* Контейнер основных кнопок */
+.cookie__container--label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 16px;
+    margin-left: 50px;
+}
+
+/* Кнопка «Принять все» */
+.cookie__accept {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 126px;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    color: var(--white-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.cookie__accept:hover {
+    background-color: #004a99;
+}
+
+/* Кнопка «Отклонить необязательные» */
+.cookie__decline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 16px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--dark-blue-color);
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color var(--transition);
+}
+
+.cookie__decline:hover {
+    color: var(--primary-color);
+}
+
+/* Фокус клавиатуры */
+.cookie__notifications button:focus-visible,
+.cookie__notifications a:focus-visible,
+.cookie__notifications input:focus-visible {
+    outline: 3px solid var(--discount-color);
+    outline-offset: 3px;
 }
