@@ -228,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
     // Модальное окно выбора города
 
     const openBtn = document.querySelector('.city__selector');
@@ -727,6 +726,292 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+
+    // Модальное окно «Заказать звонок»
+
+    const callbackOverlay = document.getElementById('callback-modal');
+    const callbackWindow = callbackOverlay?.querySelector('.modal__callback');
+
+    const callbackClose = document.getElementById('callback-close');
+    const callbackForm = document.getElementById('callback-form');
+
+    const callbackName = callbackForm?.querySelector(
+        '.modal__callback--input:not(.modal__callback--input-phone)'
+    );
+
+    const callbackPhone = callbackForm?.querySelector(
+        '.modal__callback--input-phone'
+    );
+
+    let callbackPreviousFocus = null;
+    let callbackPreviousOverflow = '';
+    let callbackBackgroundElements = [];
+
+
+    // Настройка доступности модального окна
+    if (callbackOverlay && callbackWindow) {
+
+        callbackWindow.setAttribute('role', 'dialog');
+        callbackWindow.setAttribute('aria-modal', 'true');
+        callbackWindow.setAttribute(
+            'aria-labelledby',
+            'callback-modal-title'
+        );
+
+        callbackOverlay.setAttribute('aria-hidden', 'true');
+
+        const callbackTitle = callbackOverlay.querySelector(
+            '.modal__callback--title'
+        );
+
+        if (callbackTitle) {
+            callbackTitle.id = 'callback-modal-title';
+        }
+
+        if (callbackName) {
+            callbackName.setAttribute('aria-label', 'Ваше имя');
+        }
+
+        if (callbackPhone) {
+
+            callbackPhone.setAttribute('aria-label', 'Номер телефона');
+
+            // Мобильная цифровая клавиатура
+            callbackPhone.setAttribute('inputmode', 'numeric');
+
+            // Не более 10 цифр после +7
+            callbackPhone.setAttribute('maxlength', '10');
+
+            callbackPhone.setAttribute('autocomplete', 'tel-national');
+        }
+    }
+
+
+    // Блокировка фона модального окна
+    const lockCallbackBackground = () => {
+
+        callbackPreviousOverflow = document.body.style.overflow;
+
+        document.body.style.overflow = 'hidden';
+
+        callbackBackgroundElements = Array.from(
+            callbackOverlay.parentElement.children
+        )
+        .filter(element => element !== callbackOverlay)
+        .map(element => ({
+
+            element: element,
+            inert: element.inert,
+            ariaHidden: element.getAttribute('aria-hidden')
+
+        }));
+
+        callbackBackgroundElements.forEach(({ element }) => {
+
+            element.inert = true;
+        });
+    };
+
+
+    // Восстановление фона
+    const unlockCallbackBackground = () => {
+
+        document.body.style.overflow = callbackPreviousOverflow;
+
+        callbackBackgroundElements.forEach(({ element, inert }) => {
+
+            element.inert = inert;
+        });
+
+        callbackBackgroundElements.forEach(({ element, ariaHidden }) => {
+
+            if (ariaHidden === null) {
+
+                element.removeAttribute('aria-hidden');
+
+            } else {
+
+                element.setAttribute('aria-hidden', ariaHidden);
+            }
+        });
+
+        callbackBackgroundElements = [];
+    };
+
+
+    // Открытие модального окна «Заказать звонок»
+    const openCallbackModal = () => {
+
+        if (!callbackOverlay || !callbackWindow) return;
+
+        callbackPreviousFocus = document.activeElement;
+
+        callbackOverlay.hidden = false;
+
+        callbackOverlay.classList.add('modal__overlay--active');
+
+        callbackOverlay.setAttribute('aria-hidden', 'false');
+
+        lockCallbackBackground();
+
+        // Перемещение фокуса на поле имени
+        requestAnimationFrame(() => {
+
+            callbackName?.focus();
+        });
+    };
+
+
+    // Закрытие модального окна «Заказать звонок»
+    const closeCallbackModal = () => {
+
+        if (
+            !callbackOverlay ||
+            callbackOverlay.hidden
+        ) {
+            return;
+        }
+
+        callbackOverlay.classList.remove('modal__overlay--active');
+
+        callbackOverlay.setAttribute('aria-hidden', 'true');
+
+        callbackOverlay.hidden = true;
+
+        unlockCallbackBackground();
+
+        // Возврат фокуса на предыдущий элемент
+        if (
+            callbackPreviousFocus &&
+            callbackPreviousFocus.isConnected
+        ) {
+
+            callbackPreviousFocus.focus();
+        }
+
+        callbackPreviousFocus = null;
+    };
+
+
+    // Закрытие по кнопке
+    callbackClose?.addEventListener('click', closeCallbackModal);
+
+
+    // Закрытие нажатием за пределами окна
+    callbackOverlay?.addEventListener('click', (e) => {
+
+        if (e.target === callbackOverlay) {
+
+            closeCallbackModal();
+        }
+    });
+
+    // Проверка номера телефона
+
+    if (callbackPhone) {
+
+        callbackPhone.addEventListener('input', () => {
+
+            // Удаление всех символов, кроме цифр
+            callbackPhone.value = callbackPhone.value
+                .replace(/\D/g, '')
+                .slice(0, 10);
+        });
+    }
+
+
+    // Обработка отправки формы
+
+    callbackForm?.addEventListener('submit', (e) => {
+
+        // Пока серверная отправка не реализована,
+        // предотвращаем перезагрузку страницы
+        e.preventDefault();
+    });
+
+
+    // Управление модальным окном с клавиатуры
+
+    document.addEventListener('keydown', (e) => {
+
+        if (
+            !callbackOverlay ||
+            !callbackWindow ||
+            callbackOverlay.hidden
+        ) {
+            return;
+        }
+
+        // Escape — закрытие окна
+        if (e.key === 'Escape') {
+
+            e.preventDefault();
+
+            closeCallbackModal();
+
+            return;
+        }
+
+        // Tab — ограничение перехода фокуса внутри окна
+        if (e.key === 'Tab') {
+
+            const focusableElements = Array.from(
+                callbackWindow.querySelectorAll(
+                    'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                )
+            ).filter(element => {
+
+                return element.getClientRects().length > 0;
+            });
+
+            if (focusableElements.length === 0) {
+
+                e.preventDefault();
+
+                return;
+            }
+
+            const firstElement = focusableElements[0];
+
+            const lastElement = focusableElements[
+                focusableElements.length - 1
+            ];
+
+            // Если фокус оказался вне окна
+            if (!callbackWindow.contains(document.activeElement)) {
+
+                e.preventDefault();
+
+                firstElement.focus();
+
+                return;
+            }
+
+            // Shift + Tab с первого элемента
+            if (
+                e.shiftKey &&
+                document.activeElement === firstElement
+            ) {
+
+                e.preventDefault();
+
+                lastElement.focus();
+            }
+
+            // Tab с последнего элемента
+            else if (
+                !e.shiftKey &&
+                document.activeElement === lastElement
+            ) {
+
+                e.preventDefault();
+
+                firstElement.focus();
+            }
+        }
+    });
+
 
     // Мобильное меню «Ещё»
 
