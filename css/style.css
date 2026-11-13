@@ -845,6 +845,37 @@ html {
     transition: color var(--transition);
     text-decoration: underline;
     text-underline-offset: 3px;
+    position: relative;
+}
+
+.cookie__link::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    
+    background-color: transparent;
+    border: 1px solid var(--dark-blue-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 100;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.cookie__link:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .cookie__link:hover {
