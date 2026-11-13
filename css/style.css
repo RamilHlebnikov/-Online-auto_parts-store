@@ -247,6 +247,36 @@ html {
     text-decoration: none;
     transition: opacity var(--transition);
     white-space: nowrap;
+    position: relative;
+}
+
+.top__bar--link::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.top__bar--link:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .top__bar--link:hover {
@@ -402,6 +432,36 @@ html {
     text-decoration: none;
     transition: background-color var(--transition);
     white-space: nowrap;
+    position: relative;
+}
+
+.header__max::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+/* Показываем при наведении */
+.header__max:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .header__max:hover {
@@ -562,7 +622,7 @@ html {
 }
 
 .header__action {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 15px;
     text-decoration: none;
@@ -572,6 +632,35 @@ html {
     font-weight: 500;
     transition: color var(--transition);
     position: relative;
+}
+
+/* Тултип (появляется при наведении) */
+.header__action::before {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.header__action:hover::before {
+    opacity: 1;
+    visibility: visible;
 }
 
 .header__action:not(:last-child)::after {
@@ -618,6 +707,405 @@ html {
     font-size: 12px;
     color: var(--dark-blue-color);
     font-weight: 400;
+}
+
+/* Баннер */
+.banner {
+    padding: 30px 0;
+}
+
+.banner__wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+.banner__slider {
+    flex: 2;
+    position: relative;
+    height: 390px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-image: url(../images/main/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner__slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 40px 100px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* .banner__slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 55px 92px 73px 95px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+} */
+
+.banner__content {
+    width: 50%;
+    max-width: 50%;
+    z-index: 2;
+    position: relative;
+}
+
+.banner__title {
+    font-family: var(--font-family-Roboto);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--dark-blue-color);
+    margin: 0 0 10px 0;
+}
+
+.banner__brand {
+    display: block;
+    font-family: var(--font-family-Roboto);
+    font-size: 20px;
+    color: #717171;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.banner__price {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.banner__price--current {
+    font-family: var(--font-family-Roboto);
+    font-size: 37px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.banner__price--old {
+    font-family: var(--font-family-Roboto);
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--secondary-color);
+    text-decoration: line-through;
+}
+
+.banner__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.banner__btn:hover {
+    background-color: #004a99;
+}
+
+.banner__image {
+    width: 45%;
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.banner__image--img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+.banner__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--white-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transition: background-color var(--transition);
+    z-index: 10;
+    box-sizing: border-box;
+    line-height: 0;
+}
+
+.banner__arrow::before {
+    all: unset;
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 85%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    display: block;
+    box-sizing: border-box;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.banner__arrow:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.banner__slider {
+    overflow: visible;
+    z-index: 2;
+}
+
+.banner__wrapper > * {
+    position: relative;
+}
+
+.banner__wrapper > *:not(.banner__slider) {
+    z-index: 1;
+}
+
+.banner__arrow--left {
+    left: 30px;
+}
+
+.banner__arrow--right {
+    right: 30px;
+}
+
+.banner__arrow:hover {
+    background-color: var(--background-light-color);
+}
+
+.banner__arrow svg {
+    display: block;
+    width: 10px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.banner__arrow--left svg {
+    margin-left: -2px;
+}
+
+.banner__arrow--right svg {
+    margin-right: -2px;
+}
+
+/* Точки пагинации */
+.banner__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.banner__dot {
+    width: 16px;
+    height: 16px;
+    background-color: var(--white-color);
+    opacity: 0.6;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity var(--transition), background-color var(--transition);
+}
+
+.banner__dot--active {
+    opacity: 1;
+    background-color: var(--dark-blue-color);
+}
+
+.banner__promos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.banner__promo--card {
+    background-color: var(--background-light-color);
+    border-radius: 10px;
+    padding: 20px 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid transparent;
+    transition: border-color var(--transition);
+}
+
+.banner__promo--card:hover {
+    border-color: var(--primary-color);
+}
+
+.banner__promo--header {
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    margin-bottom: 18px;
+}
+
+/* Контент внутри карточки */
+.banner__promo--content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+
+.banner__promo--img {
+    width: 80px;
+    height: 74px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.banner__promo--info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner__promo--title {
+    font-family: var(--font-family-Roboto);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    line-height: 23px;
+    margin: 0 0 6px 0;
+}
+
+.banner__promo--brand {
+    display: block;
+    font-family: var(--font-family-Roboto);
+    font-weight: 400;
+    font-size: 12px;
+    color: #525252;
+    margin-bottom: 20px;
+}
+
+.banner__promo--price {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.banner__promo--price--current {
+    font-family: var(--font-family-Roboto);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--discount-color);
+}
+
+.banner__promo--price--old {
+    font-family: var(--font-family-Roboto);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--secondary-color);
+    text-decoration: line-through;
+}
+
+.banner__promo--btn {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--transition);
+    flex-shrink: 0;
+}
+
+.banner__promo--btn:hover {
+    background-color: #004a99;
+}
+
+/* Обёртка слайдов */
+.banner__slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.banner__slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.4s ease,
+        visibility 0s linear 0.4s;
+}
+
+.banner__slide.banner__slide--active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+        opacity 0.4s ease,
+        visibility 0s;
 }
 
 /* Модальное окно (Скрыто по умолчанию) */
@@ -674,6 +1162,35 @@ html {
     align-items: center;
     justify-content: center;
     transition: opacity var(--transition);
+    position: relative;
+}
+
+.modal__city--close::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.modal__city--close:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal__city--close:hover {
@@ -789,7 +1306,7 @@ html {
     max-width: 640px;
     box-sizing: border-box;
     padding: 20px 15px;
-    background-color: transparent;
+    background-color: var(--white-color);
     border: 1px solid var(--dark-blue-color);
     border-radius: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
@@ -856,8 +1373,8 @@ html {
     transform: translateX(-50%);
     margin-top: 5px;
     
-    background-color: transparent;
-    border: 1px solid var(--dark-blue-color);
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
     color: var(--dark-blue-color);
     padding: 6px 6px;
     border-radius: 6px;
@@ -1098,6 +1615,35 @@ html {
     align-items: center;
     justify-content: center;
     transition: opacity var(--transition);
+    position: relative;
+}
+
+.modal__callback--close::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.modal__callback--close:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal__callback--close:hover {
@@ -1240,6 +1786,35 @@ html {
     color: var(--primary-color);
     transition: color var(--transition);
     cursor: pointer;
+    position: relative;
+}
+
+.modal__callback--agreement a::after {
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.modal__callback--agreement a:hover::after {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal__callback--agreement a:hover {

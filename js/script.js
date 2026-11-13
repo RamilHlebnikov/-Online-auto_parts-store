@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // Уведомление Cookie
@@ -1149,6 +1148,218 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeMenu();
             }
         });
+    }
+
+
+    // Слайдер баннера
+
+    const bannerSlider = document.querySelector('.banner__slider');
+
+    if (bannerSlider) {
+
+        const bannerSlides = bannerSlider.querySelectorAll('.banner__slide');
+        const bannerPrevBtn = bannerSlider.querySelector('.banner__arrow--left');
+        const bannerNextBtn = bannerSlider.querySelector('.banner__arrow--right');
+        const bannerDots = bannerSlider.querySelectorAll('.banner__dot');
+
+        // Настройки слайдера
+        const AUTOPLAY_DELAY = 3000;
+        const SWIPE_THRESHOLD = 50;
+
+        // Определение первоначального активного слайда
+        let currentBannerSlide = Array.from(bannerSlides).findIndex(slide =>
+            slide.classList.contains('banner__slide--active')
+        );
+
+        if (currentBannerSlide === -1) {
+            currentBannerSlide = 0;
+        }
+
+        let autoplayTimer = null;
+
+        // Переключение слайдов
+        function showBannerSlide(index) {
+
+            if (bannerSlides.length === 0) return;
+
+            // Зацикливание слайдера
+            currentBannerSlide =
+                (index + bannerSlides.length) % bannerSlides.length;
+
+            // Обновление слайдов
+            bannerSlides.forEach((slide, i) => {
+
+                slide.classList.toggle(
+                    'banner__slide--active',
+                    i === currentBannerSlide
+                );
+
+            });
+
+            // Обновление точек
+            bannerDots.forEach((dot, i) => {
+
+                dot.classList.toggle(
+                    'banner__dot--active',
+                    i === currentBannerSlide
+                );
+
+                dot.setAttribute(
+                    'aria-current',
+                    i === currentBannerSlide ? 'true' : 'false'
+                );
+
+            });
+
+        }
+
+        // Следующий слайд
+        function nextBannerSlide() {
+            showBannerSlide(currentBannerSlide + 1);
+        }
+
+        // Предыдущий слайд
+        function prevBannerSlide() {
+            showBannerSlide(currentBannerSlide - 1);
+        }
+
+        // Остановка автопрокрутки
+        function stopBannerAutoplay() {
+
+            if (autoplayTimer !== null) {
+                clearInterval(autoplayTimer);
+                autoplayTimer = null;
+            }
+
+        }
+
+        // Запуск автопрокрутки
+        function startBannerAutoplay() {
+
+            stopBannerAutoplay();
+
+            if (bannerSlides.length < 2 || document.hidden) return;
+
+            autoplayTimer = setInterval(() => {
+                nextBannerSlide();
+            }, AUTOPLAY_DELAY);
+
+        }
+
+        // Перезапуск автопрокрутки после ручного переключения
+        function restartBannerAutoplay() {
+            startBannerAutoplay();
+        }
+
+        // Переключение кнопкой «Вперёд»
+        bannerNextBtn?.addEventListener('click', () => {
+
+            nextBannerSlide();
+            restartBannerAutoplay();
+
+        });
+
+        // Переключение кнопкой «Назад»
+        bannerPrevBtn?.addEventListener('click', () => {
+
+            prevBannerSlide();
+            restartBannerAutoplay();
+
+        });
+
+        // Переключение через точки
+        bannerDots.forEach((dot, index) => {
+
+            dot.addEventListener('click', () => {
+
+                showBannerSlide(index);
+                restartBannerAutoplay();
+
+            });
+
+        });
+
+        // Остановка при наведении мыши
+        bannerSlider.addEventListener('mouseenter', stopBannerAutoplay);
+
+        // Возобновление после ухода мыши
+        bannerSlider.addEventListener('mouseleave', startBannerAutoplay);
+
+        // Остановка, когда вкладка браузера неактивна
+        document.addEventListener('visibilitychange', () => {
+
+            if (document.hidden) {
+                stopBannerAutoplay();
+            } else {
+                startBannerAutoplay();
+            }
+
+        });
+
+
+        // Свайп на мобильных устройствах
+
+        const bannerSwipeArea = bannerSlider.querySelector('.banner__slides');
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isTouching = false;
+
+        bannerSwipeArea?.addEventListener('pointerdown', (event) => {
+
+            if (event.pointerType !== 'touch') return;
+
+            touchStartX = event.clientX;
+            touchStartY = event.clientY;
+
+            isTouching = true;
+
+        });
+
+        bannerSwipeArea?.addEventListener('pointerup', (event) => {
+
+            if (!isTouching || event.pointerType !== 'touch') return;
+
+            const deltaX = event.clientX - touchStartX;
+            const deltaY = event.clientY - touchStartY;
+
+            isTouching = false;
+
+            // Игнорирование коротких и вертикальных движений
+            if (
+                Math.abs(deltaX) < SWIPE_THRESHOLD ||
+                Math.abs(deltaX) <= Math.abs(deltaY)
+            ) {
+                return;
+            }
+
+            // Свайп влево — следующий слайд
+            if (deltaX < 0) {
+                nextBannerSlide();
+            }
+
+            // Свайп вправо — предыдущий слайд
+            else {
+                prevBannerSlide();
+            }
+
+            restartBannerAutoplay();
+
+        });
+
+        // Отмена свайпа, если браузер прервал касание
+        bannerSwipeArea?.addEventListener('pointercancel', () => {
+
+            isTouching = false;
+
+        });
+
+        // Первоначальная синхронизация
+        showBannerSlide(currentBannerSlide);
+
+        // Запуск автоматической прокрутки
+        startBannerAutoplay();
+
     }
 
 });
