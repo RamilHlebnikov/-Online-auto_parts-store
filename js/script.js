@@ -1362,4 +1362,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    // Слайдер услуг
+
+    const servicesSlider = document.querySelector('.services__slider');
+
+    if (servicesSlider) {
+
+        const servicesSlides = servicesSlider.querySelector('.services__slides');
+        const servicesTrack = servicesSlider.querySelector('.services__track');
+        const servicesCards = servicesSlider.querySelectorAll('.services__slide');
+
+        const servicesPrevBtn = servicesSlider.querySelector('.services__arrow--left');
+        const servicesNextBtn = servicesSlider.querySelector('.services__arrow--right');
+
+        if (servicesSlides && servicesTrack && servicesCards.length && servicesPrevBtn && servicesNextBtn) {
+
+            let currentServicesSlide = 0;
+
+            // Шаг перемещения одной карточки
+            const getServicesStep = () => {
+                const cardWidth = servicesCards[0].getBoundingClientRect().width;
+                const gap = parseFloat(getComputedStyle(servicesTrack).gap) || 0;
+
+                return cardWidth + gap;
+            };
+
+            // Максимальное смещение трека
+            const getMaxServicesOffset = () => {
+                return Math.max(0, servicesTrack.scrollWidth - servicesSlides.clientWidth);
+            };
+
+            // Обновление слайдера
+            const updateServicesSlider = () => {
+
+                const step = getServicesStep();
+                const maxOffset = getMaxServicesOffset();
+
+                const offset = Math.min(currentServicesSlide * step, maxOffset);
+
+                servicesTrack.style.transform = `translateX(-${offset}px)`;
+
+                servicesPrevBtn.disabled = offset <= 1;
+                servicesNextBtn.disabled = offset >= maxOffset - 1;
+            };
+
+            // Следующая карточка
+            servicesNextBtn.addEventListener('click', () => {
+
+                const maxOffset = getMaxServicesOffset();
+                const nextOffset = (currentServicesSlide + 1) * getServicesStep();
+
+                if (nextOffset < maxOffset - 1) {
+                    currentServicesSlide++;
+                } else {
+                    currentServicesSlide = Math.ceil(maxOffset / getServicesStep());
+                }
+
+                updateServicesSlider();
+            });
+
+            // Предыдущая карточка
+            servicesPrevBtn.addEventListener('click', () => {
+
+                if (currentServicesSlide > 0) {
+                    currentServicesSlide--;
+                }
+
+                updateServicesSlider();
+            });
+
+            // Пересчёт при изменении размера окна
+            window.addEventListener('resize', () => {
+                currentServicesSlide = 0;
+                updateServicesSlider();
+            });
+
+            // Первоначальная настройка
+            updateServicesSlider();
+        }
+    }
+
 });

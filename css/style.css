@@ -711,7 +711,7 @@ html {
 
 /* Баннер */
 .banner {
-    padding: 30px 0;
+    padding-top: 30px;
 }
 
 .banner__wrapper {
@@ -1106,6 +1106,194 @@ html {
     transition:
         opacity 0.4s ease,
         visibility 0s;
+}
+
+/* Услуги */
+.services {
+    padding: 70px 0;
+}
+
+.services__slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.services__slides {
+    width: 100%;
+    overflow: hidden;
+}
+
+.services__track {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease;
+}
+
+.services__slide {
+    flex: 0 0 calc((100% - 60px) / 3);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.services__arrow:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+/* .services__slide.services__slide--active {
+    display: block;
+} */
+
+.services__card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-alt-color);
+    border-radius: 6px;
+    padding: 30px;
+    width: 100%;
+    height: 184px;
+    box-sizing: border-box;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.services__card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.services__content {
+    max-width: 49%;
+}
+
+.services__title {
+    font-family: var(--font-family-Roboto);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--dark-blue-color);
+    margin: 0 0 10px 0;
+}
+
+.services__desc {
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 500;
+    color: #0A1A2C;
+    line-height: 24px;
+    margin: 0 0 12px 0;
+}
+
+.services__btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-family: var(--font-family-Roboto);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background-color var(--transition);
+}
+
+.services__btn:hover {
+    background-color: #004a99;
+}
+
+.services__image {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 158px;
+    height: 185px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.services__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Стрелки */
+.services__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-color);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color var(--transition);
+}
+
+.services__arrow::before {
+    all: unset;
+    content: attr(data-title);
+    position: absolute;
+    top: 100%;
+    left: 85%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    display: block;
+    box-sizing: border-box;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--dark-blue-color);
+    padding: 6px 6px;
+    border-radius: 6px;
+    font-family: var(--font-family-Roboto);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.services__arrow:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.services__arrow:hover {
+    background-color: var(--background-light-color);
+}
+
+.services__arrow--left {
+    left: -20px;
+}
+
+.services__arrow--right {
+    right: -20px;
+}
+
+.services__arrow svg {
+    display: block;
+    width: 10px;
+    height: 18px;
 }
 
 /* Модальное окно (Скрыто по умолчанию) */
