@@ -1706,4 +1706,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Кнопка "Наверх"
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    if (scrollTopBtn) {
+        // Показ/скрытие кнопки при скролле
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('is-visible');
+            } else {
+                scrollTopBtn.classList.remove('is-visible');
+            }
+        });
+
+        // Плавный скролл наверх при клике
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
 });
