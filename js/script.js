@@ -1686,22 +1686,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (catalogBtn && catalogDropdown) {
         // Открытие/закрытие по клику на кнопку
         catalogBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Чтобы клик не улетал на документ
+            e.stopPropagation();
+            
+            // Переключение класса у меню
             catalogDropdown.classList.toggle('is-active');
+            
+            // Переключение класса у кнопки (для смены иконки)
+            catalogBtn.classList.toggle('is-active');
         });
 
         // Закрытие при клике вне меню
         document.addEventListener('click', (e) => {
             if (!catalogDropdown.contains(e.target) && e.target !== catalogBtn) {
                 catalogDropdown.classList.remove('is-active');
+                catalogBtn.classList.remove('is-active');
             }
         });
 
-        // Закрытие при клике на ссылку внутри меню (если нужно)
+        // Закрытие при клике на ссылку внутри меню
         const catalogLinks = catalogDropdown.querySelectorAll('.header__catalog-link');
         catalogLinks.forEach(link => {
             link.addEventListener('click', () => {
                 catalogDropdown.classList.remove('is-active');
+                catalogBtn.classList.remove('is-active');
             });
         });
     }

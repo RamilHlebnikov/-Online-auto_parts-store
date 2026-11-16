@@ -430,7 +430,7 @@ html {
     display: flex;
     align-items: center;
     gap: 6px;
-    background-color: #F4F5FA;
+    background-color: var(--background-light-color);
     color: var(--dark-blue-color);
     padding: 8px 16px;
     border-radius: 6px;
@@ -472,7 +472,7 @@ html {
 }
 
 .header__max:hover {
-    background-color: #E1E5F8;
+    background-color: var(--secondary-alt-color);
 }
 
 .header__max svg {
@@ -604,6 +604,22 @@ html {
     color: var(--primary-color);
 }
 
+.header__catalog--btn .icon-burger {
+    display: block;
+}
+
+.header__catalog--btn .icon-close {
+    display: none;
+}
+
+.header__catalog--btn.is-active .icon-burger {
+    display: none;
+}
+
+.header__catalog--btn.is-active .icon-close {
+    display: block;
+}
+
 /* Поиск */
 .header__search {
     display: flex;
@@ -718,7 +734,7 @@ html {
     content: '';
     display: block;
     height: 28px;
-    border-left: 1px solid #E1E5F8; 
+    border-left: 1px solid var(--secondary-alt-color);
     margin-left: 25px;
     margin-right: 25px;
 }
@@ -1096,7 +1112,7 @@ html {
     font-family: var(--font-family-Roboto);
     font-weight: 400;
     font-size: 12px;
-    color: #525252;
+    color: var(--dark-alt-color);
     margin-bottom: 20px;
 }
 
@@ -1450,7 +1466,7 @@ html {
 .products__rating--text {
     font-family: var(--font-family-Roboto);
     font-size: 14px;
-    color: #B0B0B0;
+    color: var(--reviews-color);
     font-weight: 400;
 }
 
@@ -1631,7 +1647,7 @@ html {
     font-family: var(--font-family-Roboto);
     font-size: 18px;
     font-weight: 500;
-    color: #868DAC;
+    color: var(--basement-footer-color);
     margin-bottom: 18px;
     text-transform: uppercase;
 }
@@ -1797,7 +1813,7 @@ html {
 }
 
 .footer__subscribe-input:hover:not(:focus) {
-    border-color: #868DAC;
+    border-color: var(--basement-footer-color);
 }
 
 .footer__subscribe-input:focus {
@@ -1820,6 +1836,10 @@ html {
 
 .footer__subscribe-btn:hover {
     background-color: #004a99;
+}
+
+.footer__subscribe-form:has(.footer__subscribe-btn:hover) .footer__subscribe-input {
+    border-color: var(--basement-footer-color);
 }
 
 .footer__socials {
@@ -2592,7 +2612,6 @@ html {
     transition: all 0.3s ease;
 }
 
-/* Класс для показа кнопки (добавляется через JS) */
 .scroll-top.is-visible {
     opacity: 1;
     visibility: visible;
