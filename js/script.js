@@ -1735,4 +1735,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Печатающийся Placeholder в поиске
+    const searchInputMain = document.querySelector('.header__search--input');
+
+    if (searchInputMain) {
+        const phrases = [
+            "Поиск по наименованию или артикулу"
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typeSpeed = 100;
+        const deleteSpeed = 50;
+        const delayBeforeDelete = 2000;
+        const delayBeforeType = 500;
+
+        function typePlaceholder() {
+            const currentPhrase = phrases[phraseIndex];
+
+            if (isDeleting) {
+                searchInputMain.setAttribute('placeholder', currentPhrase.substring(0, charIndex - 1));
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typePlaceholder, delayBeforeType);
+                    return;
+                }
+            } else {
+                searchInputMain.setAttribute('placeholder', currentPhrase.substring(0, charIndex + 1));
+                charIndex++;
+
+                if (charIndex === currentPhrase.length) {
+                    isDeleting = true;
+                    setTimeout(typePlaceholder, delayBeforeDelete);
+                    return;
+                }
+            }
+
+            const speed = isDeleting ? deleteSpeed : typeSpeed;
+            setTimeout(typePlaceholder, speed);
+        }
+
+        setTimeout(typePlaceholder, 1000);
+    }
+
 });
