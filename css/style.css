@@ -2566,7 +2566,7 @@ html {
     background-color: var(--white-color);
     border: 1px solid var(--secondary-color);
     color: var(--dark-blue-color);
-    padding: 6px 6px;
+    padding: 6px;
     border-radius: 6px;
     font-family: var(--font-family-Roboto);
     font-size: 12px;
@@ -2634,10 +2634,11 @@ html {
     background-color: var(--white-color);
     border: 1px solid var(--secondary-color);
     color: var(--dark-blue-color);
-    padding: 6px 10px;
+    padding: 6px;
     border-radius: 6px;
     font-family: var(--font-family-Roboto);
     font-size: 12px;
+    font-weight: 400;
     white-space: nowrap;
     z-index: 1000;
     opacity: 0;
